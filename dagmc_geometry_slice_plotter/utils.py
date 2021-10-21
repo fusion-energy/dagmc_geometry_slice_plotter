@@ -1,0 +1,111 @@
+from pathlib import Path
+from typing import Tuple, Optional
+
+import matplotlib.pyplot as plt
+import trimesh
+from matplotlib import transforms
+
+
+def plot_slice_of_dagmc_file(
+    dagmc_filename,
+    plane_origin: Tuple[float, float, float] = None,
+    plane_normal: Tuple[float, float, float] = [0, 0, 1],
+    rotate_plot: float = 0,
+    output_filename: Optional[str] = None,
+) -> plt:
+    """Slices through a 3D DAGMC geometry file (h5m format) and produces a
+    matplotlib plot of the slice.
+
+    Args:
+        dagmc_filename: the filename of the DAGMC h5m file.
+        plane_origin: the origin of the plain, if None then the centroid of
+            the mesh will be used.
+        plane_normal: the plane to slice the geometry on. Defaults to slicing
+            along the Z plane which is input as [0, 0, 1].
+        rotate_plot: the angle in degrees to rotate the plot by. Useful when
+            used in conjunction with changing plane_normal to orientate the
+            plot correctly.
+        output_filename: if specified then a the plot will be saved as an image
+            with default settings. Alternatively the returned plot object can
+            be saved using that matplotlib .savefig() method.
+
+    Return:
+        A matplotlib.pyplot object
+    """
+
+    if not Path(dagmc_filename).is_file():
+        raise FileNotFoundError(f"file {dagmc_filename} not found.")
+
+    trimesh_mesh_object = trimesh.load_mesh(dagmc_filename, process=False)
+
+    plot = plot_slice_of_trimesh_object(
+        trimesh_mesh_object=trimesh_mesh_object,
+        plane_origin=plane_origin,
+        plane_normal=plane_normal,
+        rotate_plot=rotate_plot,
+        output_filename=output_filename,
+    )
+
+    return plot
+
+
+def plot_slice_of_trimesh_object(
+    trimesh_mesh_object,
+    plane_origin: Tuple[float, float, float] = None,
+    plane_normal: Tuple[float, float, float] = [0, 0, 1],
+    rotate_plot: float = 0,
+    output_filename: Optional[str] = None,
+) -> plt:
+    """Slices through a trimesh_mesh_object and produces a matplotlib plot of
+    the slice. Accepts a trimesh_mesh_object which avoids reloading the mesh
+    file each time a new plot is required.
+
+    Args:
+        trimesh_mesh_object: A trimesh mesh object. This can be created from a
+            a DAGMC h5m file in the following way 'trimesh_mesh_object =
+            trimesh.load_mesh(dagmc_filename, process=False)'
+        plane_origin: the origin of the plain, if None then the centroid of
+            the mesh will be used.
+        plane_normal: the plane to slice the geometry on. Defaults to slicing
+            along the Z plane which is input as [0, 0, 1].
+        rotate_plot: the angle in degrees to rotate the plot by. Useful when
+            used in conjunction with changing plane_normal to orientate the
+            plot correctly.
+        output_filename: if specified then a the plot will be saved as an image
+            with default settings. Alternatively the returned plot object can
+            be saved using that matplotlib .savefig() method.
+
+    Return:
+        A matplotlib.pyplot object
+    """
+
+    if plane_origin is None:
+        plane_origin = trimesh_mesh_object.centroid
+    slice = trimesh_mesh_object.section(
+        plane_origin=plane_origin,
+        plane_normal=plane_normal,
+    )
+
+    slice_2D, to_3D = slice.to_planar()
+
+    plt.close()
+
+    # keep plot axis scaled the same
+    plt.axes().set_aspect("equal", "datalim")
+
+    if rotate_plot != 0:
+        base = plt.gca().transData
+        rot = transforms.Affine2D().rotate_deg(rotate_plot)
+
+    for entity in slice_2D.entities:
+
+        discrete = entity.discrete(slice_2D.vertices)
+
+        if rotate_plot != 0:
+            plt.plot(*discrete.T, color="black", linewidth=1, transform=rot + base)
+        else:
+            plt.plot(*discrete.T, color="black", linewidth=1)
+
+    if output_filename:
+        plt.savefig(output_filename, dpi=300)
+    return plt

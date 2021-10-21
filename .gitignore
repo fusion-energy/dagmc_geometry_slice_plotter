@@ -127,3 +127,9 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# input and output files from package
+*.png
+*.h5m
+*.tar.gz
+tests/neutronics_workflow-0.0.2/
