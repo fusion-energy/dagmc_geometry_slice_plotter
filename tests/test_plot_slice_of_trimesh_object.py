@@ -3,12 +3,13 @@ import tarfile
 import unittest
 import urllib.request
 from pathlib import Path
+import trimesh
 
 import matplotlib.pyplot as plt
-from dagmc_geometry_slice_plotter import plot_slice_of_dagmc_file
+from dagmc_geometry_slice_plotter import plot_slice_of_trimesh_object
 
 
-class TestPlotSliceOfDagmcFile(unittest.TestCase):
+class TestPlotSliceOfTrimeshObject(unittest.TestCase):
     """Tests the neutronics utilities functionality and use cases"""
 
     def setUp(self):
@@ -21,20 +22,23 @@ class TestPlotSliceOfDagmcFile(unittest.TestCase):
             tar.extractall("tests")
             tar.close()
 
-        self.h5m_filename_smaller = "tests/neutronics_workflow-0.0.2/example_01_single_volume_cell_tally/stage_2_output/dagmc.h5m"
-        self.h5m_filename_bigger = "tests/neutronics_workflow-0.0.2/example_02_multi_volume_cell_tally/stage_2_output/dagmc.h5m"
+        h5m_filename_smaller = "tests/neutronics_workflow-0.0.2/example_01_single_volume_cell_tally/stage_2_output/dagmc.h5m"
+        h5m_filename_bigger = "tests/neutronics_workflow-0.0.2/example_02_multi_volume_cell_tally/stage_2_output/dagmc.h5m"
+
+        self.trimesh_mesh_object_smaller = trimesh.load_mesh(h5m_filename_smaller, process=False)
+        self.trimesh_mesh_object_bigger = trimesh.load_mesh(h5m_filename_bigger, process=False)
 
     def test_create_default_plot(self):
         """Tests returned object is a matplotlib plot"""
 
-        plot = plot_slice_of_dagmc_file(
-            dagmc_filename=self.h5m_filename_smaller,
+        plot = plot_slice_of_trimesh_object(
+            trimesh_mesh_object=self.trimesh_mesh_object_smaller,
         )
 
         assert isinstance(plot, type(plt))
 
-        plot2 = plot_slice_of_dagmc_file(
-            dagmc_filename=self.h5m_filename_bigger,
+        plot2 = plot_slice_of_trimesh_object(
+            trimesh_mesh_object=self.trimesh_mesh_object_bigger,
         )
 
         assert isinstance(plot2, type(plt))
@@ -44,8 +48,8 @@ class TestPlotSliceOfDagmcFile(unittest.TestCase):
 
         os.system("rm test_plot.png")
 
-        plot_slice_of_dagmc_file(
-            dagmc_filename=self.h5m_filename_smaller,
+        plot_slice_of_trimesh_object(
+            trimesh_mesh_object=self.trimesh_mesh_object_smaller,
             output_filename="test_plot.png",
         )
 
@@ -53,8 +57,8 @@ class TestPlotSliceOfDagmcFile(unittest.TestCase):
 
         os.system("rm test_plot2.png")
 
-        plot_slice_of_dagmc_file(
-            dagmc_filename=self.h5m_filename_bigger,
+        plot_slice_of_trimesh_object(
+            trimesh_mesh_object=self.trimesh_mesh_object_bigger,
             output_filename="test_plot2.png",
         )
 
