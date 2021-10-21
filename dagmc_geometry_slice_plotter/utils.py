@@ -1,9 +1,61 @@
 from pathlib import Path
-from typing import Tuple, Optional
+from typing import Optional, Tuple
 
 import matplotlib.pyplot as plt
 import trimesh
 from matplotlib import transforms
+
+
+def plot_slice_of_dagmc_geometry(
+    dagmc_file_or_trimesh_object, 
+    plane_origin: Tuple[float, float, float] = None,
+    plane_normal: Tuple[float, float, float] = [0, 0, 1],
+    rotate_plot: float = 0,
+    output_filename: Optional[str] = None,
+):
+    """Slices through a 3D DAGMC geometry file (h5m format) and produces a
+    matplotlib plot of the slice.
+
+    Args:
+        dagmc_file_or_trimesh_object: the filename of the DAGMC h5m file or a
+            A trimesh mesh object. This can be created from a DAGMC h5m file in
+            the following way 'trimesh_mesh_object = trimesh.load_mesh(
+            dagmc_filename, process=False)'.
+        plane_origin: the origin of the plain, if None then the centroid of
+            the mesh will be used.
+        plane_normal: the plane to slice the geometry on. Defaults to slicing
+            along the Z plane which is input as [0, 0, 1].
+        rotate_plot: the angle in degrees to rotate the plot by. Useful when
+            used in conjunction with changing plane_normal to orientate the
+            plot correctly.
+        output_filename: if specified then a the plot will be saved as an image
+            with default settings. Alternatively the returned plot object can
+            be saved using that matplotlib .savefig() method.
+
+    Return:
+        A matplotlib.pyplot object
+    """
+
+    if isinstance(dagmc_file_or_trimesh_object, str):
+        slice = plot_slice_of_dagmc_file(
+            dagmc_filename=dagmc_file_or_trimesh_object,
+            plane_origin=plane_origin,
+            plane_normal=plane_normal,
+            rotate_plot=rotate_plot,
+            output_filename=output_filename
+        )
+
+    else:
+
+        slice = plot_slice_of_trimesh_object(
+            trimesh_mesh_object=dagmc_file_or_trimesh_object,
+            plane_origin=plane_origin,
+            plane_normal=plane_normal,
+            rotate_plot=rotate_plot,
+            output_filename=output_filename
+        )
+
+    return slice
 
 
 def plot_slice_of_dagmc_file(
@@ -62,7 +114,7 @@ def plot_slice_of_trimesh_object(
 
     Args:
         trimesh_mesh_object: A trimesh mesh object. This can be created from a
-            a DAGMC h5m file in the following way 'trimesh_mesh_object =
+            DAGMC h5m file in the following way 'trimesh_mesh_object =
             trimesh.load_mesh(dagmc_filename, process=False)'
         plane_origin: the origin of the plain, if None then the centroid of
             the mesh will be used.
