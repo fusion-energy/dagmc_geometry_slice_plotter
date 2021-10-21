@@ -23,7 +23,6 @@ class TestPlotSliceOfDagmcFile(unittest.TestCase):
 
         self.h5m_filename_smaller = "tests/neutronics_workflow-0.0.2/example_01_single_volume_cell_tally/stage_2_output/dagmc.h5m"
         self.h5m_filename_bigger = "tests/neutronics_workflow-0.0.2/example_02_multi_volume_cell_tally/stage_2_output/dagmc.h5m"
-        self.h5m_filename_bigger = "dagmc.h5m"
 
     def test_create_default_plot(self):
         """Tests returned object is a matplotlib plot"""
