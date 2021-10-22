@@ -138,12 +138,14 @@ def plot_slice_of_trimesh_object(
         plane_normal=plane_normal,
     )
 
-    slice_2D, to_3D = slice.to_planar()
+    to_2D = trimesh.geometry.align_vectors(plane_normal, [0,0,-1])
+
+    slice_2D, to_3D = slice.to_planar(to_2D = to_2D)
 
     plt.close()
 
     # keep plot axis scaled the same
-    plt.axes().set_aspect("equal", "datalim")
+    plt.axes().set_aspect("equal")  # an option to increase box size "datalim"
 
     if rotate_plot != 0:
         base = plt.gca().transData

@@ -1,3 +1,10 @@
+[![N|Python](https://www.python.org/static/community_logos/python-powered-w-100x40.png)](https://www.python.org)
+
+[![CI with install](https://github.com/fusion-energy/dagmc_geometry_slice_plotter/actions/workflows/ci_with_install.yml/badge.svg?branch=develop)](https://github.com/fusion-energy/dagmc_geometry_slice_plotter/actions/workflows/ci_with_install.yml)
+
+[![PyPI](https://img.shields.io/pypi/v/dagmc-geometry-slice-plotter?color=brightgreen&label=pypi&logo=grebrightgreenen&logoColor=green)](https://pypi.org/project/dagmc-geometry-slice-plotter/)
+
+[![codecov](https://codecov.io/gh/fusion-energy/dagmc_geometry_slice_plotter/branch/main/graph/badge.svg)](https://codecov.io/gh/fusion-energy/dagmc_geometry_slice_plotter)
 
 A minimal Python package that produces slice plots through h5m DAGMC geometry files
 
