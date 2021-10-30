@@ -1,0 +1,10 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+authors:
+- family-names: "Shimwell"
+  given-names: "Jonathan"
+  orcid: "https://orcid.org/0000-0001-6909-0946"
+title: "dagmc-geometry-slice-plotter. A minimal Python package that produces slice plots through h5m DAGMC geometry files"
+version: 0.0.3
+date-released: 2021-10-22
+url: "https://github.com/fusion-energy/dagmc_geometry_slice_plotter"
