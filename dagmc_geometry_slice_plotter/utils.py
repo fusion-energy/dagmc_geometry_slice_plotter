@@ -138,6 +138,11 @@ def plot_slice_of_trimesh_object(
         plane_normal=plane_normal,
     )
 
+    if slice is None:
+        msg = ('The geometry slice returned None which means no geometry was '
+              'intersected, try changing the plane_origin or plane_normal')
+        raise ValueError(msg)
+
     to_2D = trimesh.geometry.align_vectors(plane_normal, [0,0,-1])
 
     slice_2D, to_3D = slice.to_planar(to_2D = to_2D)
