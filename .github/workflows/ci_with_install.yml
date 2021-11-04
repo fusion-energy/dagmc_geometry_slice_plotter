@@ -20,7 +20,8 @@ jobs:
   testing:
     runs-on: ubuntu-latest
     container:
-      image: continuumio/miniconda3:4.9.2
+      # image: openmc/openmc:latest-dagmc is missing the dagmc universe
+      image: openmc/openmc:develop-dagmc
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2

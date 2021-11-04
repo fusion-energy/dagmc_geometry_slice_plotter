@@ -38,6 +38,6 @@ setuptools.setup(
         "shapely",
         "scipy",
         "meshio",  # required to allow trimesh to read h5m files
-        "h5py"
+        "h5py",
     ],
 )

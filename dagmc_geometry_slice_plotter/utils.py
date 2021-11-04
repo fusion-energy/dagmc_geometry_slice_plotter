@@ -1,5 +1,5 @@
 from pathlib import Path
-from typing import Optional, Tuple
+from typing import Optional, Tuple, Union
 
 import matplotlib.pyplot as plt
 import trimesh
@@ -7,7 +7,7 @@ from matplotlib import transforms
 
 
 def plot_slice_of_dagmc_geometry(
-    dagmc_file_or_trimesh_object, 
+    dagmc_file_or_trimesh_object: Union[str, trimesh.Trimesh, trimesh.Scene],
     plane_origin: Tuple[float, float, float] = None,
     plane_normal: Tuple[float, float, float] = [0, 0, 1],
     rotate_plot: float = 0,
@@ -42,7 +42,7 @@ def plot_slice_of_dagmc_geometry(
             plane_origin=plane_origin,
             plane_normal=plane_normal,
             rotate_plot=rotate_plot,
-            output_filename=output_filename
+            output_filename=output_filename,
         )
 
     else:
@@ -52,14 +52,14 @@ def plot_slice_of_dagmc_geometry(
             plane_origin=plane_origin,
             plane_normal=plane_normal,
             rotate_plot=rotate_plot,
-            output_filename=output_filename
+            output_filename=output_filename,
         )
 
     return slice
 
 
 def plot_slice_of_dagmc_file(
-    dagmc_filename,
+    dagmc_filename: str,
     plane_origin: Tuple[float, float, float] = None,
     plane_normal: Tuple[float, float, float] = [0, 0, 1],
     rotate_plot: float = 0,
@@ -102,7 +102,7 @@ def plot_slice_of_dagmc_file(
 
 
 def plot_slice_of_trimesh_object(
-    trimesh_mesh_object,
+    trimesh_mesh_object: Union[trimesh.Trimesh, trimesh.Scene],
     plane_origin: Tuple[float, float, float] = None,
     plane_normal: Tuple[float, float, float] = [0, 0, 1],
     rotate_plot: float = 0,
@@ -139,13 +139,15 @@ def plot_slice_of_trimesh_object(
     )
 
     if slice is None:
-        msg = ('The geometry slice returned None which means no geometry was '
-              'intersected, try changing the plane_origin or plane_normal')
+        msg = (
+            "The geometry slice returned None which means no geometry was "
+            "intersected, try changing the plane_origin or plane_normal"
+        )
         raise ValueError(msg)
 
-    to_2D = trimesh.geometry.align_vectors(plane_normal, [0,0,-1])
+    to_2D = trimesh.geometry.align_vectors(plane_normal, [0, 0, -1])
 
-    slice_2D, to_3D = slice.to_planar(to_2D = to_2D)
+    slice_2D, to_3D = slice.to_planar(to_2D=to_2D)
 
     plt.close()
 
