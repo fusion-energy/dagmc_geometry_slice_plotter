@@ -25,8 +25,12 @@ class TestPlotSliceOfTrimeshObject(unittest.TestCase):
         h5m_filename_smaller = "tests/neutronics_workflow-0.0.2/example_01_single_volume_cell_tally/stage_2_output/dagmc.h5m"
         h5m_filename_bigger = "tests/neutronics_workflow-0.0.2/example_02_multi_volume_cell_tally/stage_2_output/dagmc.h5m"
 
-        self.trimesh_mesh_object_smaller = trimesh.load_mesh(h5m_filename_smaller, process=False)
-        self.trimesh_mesh_object_bigger = trimesh.load_mesh(h5m_filename_bigger, process=False)
+        self.trimesh_mesh_object_smaller = trimesh.load_mesh(
+            h5m_filename_smaller, process=False
+        )
+        self.trimesh_mesh_object_bigger = trimesh.load_mesh(
+            h5m_filename_bigger, process=False
+        )
 
     def test_create_default_plot(self):
         """Tests returned object is a matplotlib plot"""
