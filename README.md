@@ -62,7 +62,7 @@ plot = plot_slice_of_dagmc_geometry(
     rotate_plot=45,
 )
 
-plot.savefig('my_plot3.png', dpi=600)
+plot.savefig('example_3_slice.png', dpi=600)
 ```
 ![dagmc slice plot](https://user-images.githubusercontent.com/8583900/138321358-194162d4-8d42-4090-811e-0dd3768a328d.png)
 
@@ -71,12 +71,13 @@ the X axis and with default settings elsewhere.
 ```python
 from dagmc_geometry_slice_plotter import plot_slice_of_dagmc_geometry
 
-plot_slice_of_dagmc_geometry(
+plot = plot_slice_of_dagmc_geometry(
     dagmc_file_or_trimesh_object='dagmc.h5m',
     plane_normal = [1, 0, 0],
     rotate_plot=270,
-    output_filename='my_plot4.png'
 )
+
+plot.savefig('example_4_slice.png')
 ```
 ![dagmc slice plot](https://user-images.githubusercontent.com/8583900/138321363-0e7604b3-74eb-44e8-8aa2-9586c008b40d.png)
 
