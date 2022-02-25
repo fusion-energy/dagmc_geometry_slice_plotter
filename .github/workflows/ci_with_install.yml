@@ -28,7 +28,7 @@ jobs:
 
       - name: install package
         run: |
-          pip install -e .
+          pip install .
           python -c "import dagmc_geometry_slice_plotter"
 
       - name: install package
