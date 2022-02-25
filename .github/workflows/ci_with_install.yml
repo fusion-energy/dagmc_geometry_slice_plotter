@@ -35,9 +35,18 @@ jobs:
         run: |
           pip install .[tests]
 
-      - name: Run test_utils
+      - name: Run tests
         run: |
           pytest tests/ -v --cov=dagmc_geometry_slice_plotter --cov-append --cov-report term --cov-report xml
+
+      - name: Run examples
+        run: |
+          cd examples
+          python example_1_from_readme.py
+          python example_2_from_readme.py
+          python example_3_from_readme.py
+          python example_4_from_readme.py
+          python example_5_from_readme.py
 
       - name: Upload to codecov
         uses: codecov/codecov-action@v2
