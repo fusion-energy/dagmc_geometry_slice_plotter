@@ -1,10 +1,10 @@
 import pytest
-import paramak
+import dagmc_geometry_slice_plotter
 
 
 def test_version():
     """Check that __version__ exists and is correctly formatted"""
-    version = paramak.__version__
+    version = dagmc_geometry_slice_plotter.__version__
     # Ensure it is given as a string
     assert isinstance(version, str)
     # Ensure is has at least two parts -- major and minor version -- separated by '.'
