@@ -34,9 +34,9 @@ class TestPlotSliceOfTrimeshObject(unittest.TestCase):
 
         os.system("rm test_plot.png")
 
-        plot_slice_of_trimesh_object(
+        plot = plot_slice_of_trimesh_object(
             trimesh_mesh_object=self.trimesh_mesh_object_smaller,
-            output_filename="test_plot.png",
         )
+        plot.savefig("test_plot.png")
 
         assert Path("test_plot.png").is_file()
