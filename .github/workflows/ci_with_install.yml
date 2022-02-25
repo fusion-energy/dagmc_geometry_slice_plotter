@@ -29,10 +29,11 @@ jobs:
       - name: install package
         run: |
           pip install .
+          python -c "import dagmc_geometry_slice_plotter"
 
-      - name: install packages for tests
+      - name: install package
         run: |
-          pip install -r requirements-test.txt 
+          pip install .[tests]
 
       - name: Run test_utils
         run: |
