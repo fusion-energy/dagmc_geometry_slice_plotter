@@ -38,12 +38,13 @@ jobs:
       - name: install package
         run: |
           pip install --upgrade pip
-          pip install .
+          pip install -e .
           python -c "import dagmc_geometry_slice_plotter"
 
-      - name: install package
+      - name: install package with test packages
         run: |
-          pip install .[tests]
+          pip install --upgrade pip
+          pip install -e .[tests]
 
       - name: Run tests
         run: |
