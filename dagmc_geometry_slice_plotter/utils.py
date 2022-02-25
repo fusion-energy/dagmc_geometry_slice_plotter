@@ -11,7 +11,6 @@ def plot_slice_of_dagmc_geometry(
     plane_origin: Tuple[float, float, float] = None,
     plane_normal: Tuple[float, float, float] = [0, 0, 1],
     rotate_plot: float = 0,
-    output_filename: Optional[str] = None,
 ):
     """Slices through a 3D DAGMC geometry file (h5m format) and produces a
     matplotlib plot of the slice.
@@ -28,9 +27,6 @@ def plot_slice_of_dagmc_geometry(
         rotate_plot: the angle in degrees to rotate the plot by. Useful when
             used in conjunction with changing plane_normal to orientate the
             plot correctly.
-        output_filename: if specified then a the plot will be saved as an image
-            with default settings. Alternatively the returned plot object can
-            be saved using that matplotlib .savefig() method.
 
     Return:
         A matplotlib.pyplot object
@@ -42,7 +38,6 @@ def plot_slice_of_dagmc_geometry(
             plane_origin=plane_origin,
             plane_normal=plane_normal,
             rotate_plot=rotate_plot,
-            output_filename=output_filename,
         )
 
     else:
@@ -52,7 +47,6 @@ def plot_slice_of_dagmc_geometry(
             plane_origin=plane_origin,
             plane_normal=plane_normal,
             rotate_plot=rotate_plot,
-            output_filename=output_filename,
         )
 
     return slice
@@ -63,7 +57,6 @@ def plot_slice_of_dagmc_file(
     plane_origin: Tuple[float, float, float] = None,
     plane_normal: Tuple[float, float, float] = [0, 0, 1],
     rotate_plot: float = 0,
-    output_filename: Optional[str] = None,
 ) -> plt:
     """Slices through a 3D DAGMC geometry file (h5m format) and produces a
     matplotlib plot of the slice.
@@ -77,9 +70,6 @@ def plot_slice_of_dagmc_file(
         rotate_plot: the angle in degrees to rotate the plot by. Useful when
             used in conjunction with changing plane_normal to orientate the
             plot correctly.
-        output_filename: if specified then a the plot will be saved as an image
-            with default settings. Alternatively the returned plot object can
-            be saved using that matplotlib .savefig() method.
 
     Return:
         A matplotlib.pyplot object
@@ -95,7 +85,6 @@ def plot_slice_of_dagmc_file(
         plane_origin=plane_origin,
         plane_normal=plane_normal,
         rotate_plot=rotate_plot,
-        output_filename=output_filename,
     )
 
     return plot
@@ -106,7 +95,6 @@ def plot_slice_of_trimesh_object(
     plane_origin: Tuple[float, float, float] = None,
     plane_normal: Tuple[float, float, float] = [0, 0, 1],
     rotate_plot: float = 0,
-    output_filename: Optional[str] = None,
 ) -> plt:
     """Slices through a trimesh_mesh_object and produces a matplotlib plot of
     the slice. Accepts a trimesh_mesh_object which avoids reloading the mesh
@@ -123,9 +111,6 @@ def plot_slice_of_trimesh_object(
         rotate_plot: the angle in degrees to rotate the plot by. Useful when
             used in conjunction with changing plane_normal to orientate the
             plot correctly.
-        output_filename: if specified then a the plot will be saved as an image
-            with default settings. Alternatively the returned plot object can
-            be saved using that matplotlib .savefig() method.
 
     Return:
         A matplotlib.pyplot object
@@ -167,6 +152,4 @@ def plot_slice_of_trimesh_object(
         else:
             plt.plot(*discrete.T, color="black", linewidth=1)
 
-    if output_filename:
-        plt.savefig(output_filename, dpi=300)
     return plt

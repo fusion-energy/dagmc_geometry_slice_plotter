@@ -29,9 +29,9 @@ class TestPlotSliceOfDagmcFile(unittest.TestCase):
 
         os.system("rm test_plot.png")
 
-        plot_slice_of_dagmc_file(
+        plot = plot_slice_of_dagmc_file(
             dagmc_filename=self.h5m_filename_smaller,
-            output_filename="test_plot.png",
         )
+        plot.savefig("test_plot.png")
 
         assert Path("test_plot.png").is_file()
