@@ -28,7 +28,7 @@ jobs:
 
       - name: install package
         run: |
-          python setup.py install
+          pip install .
 
       - name: install packages for tests
         run: |
