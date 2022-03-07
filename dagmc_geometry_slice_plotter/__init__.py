@@ -3,7 +3,7 @@ try:
 except (ModuleNotFoundError, ImportError):
     from importlib_metadata import version, PackageNotFoundError
 try:
-    __version__ = version("dagmc_geommetry_slice_plotter")
+    __version__ = version("dagmc_geometry_slice_plotter")
 except PackageNotFoundError:
     from setuptools_scm import get_version
 
