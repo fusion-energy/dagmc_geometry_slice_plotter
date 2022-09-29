@@ -1,4 +1,5 @@
-from importlib.metadata import version#, PackageNotFoundError
+from importlib.metadata import version  # , PackageNotFoundError
+
 # try:
 __version__ = version("dagmc_geometry_slice_plotter")
 # except PackageNotFoundError:
