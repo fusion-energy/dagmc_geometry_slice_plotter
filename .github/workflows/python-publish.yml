@@ -31,11 +31,13 @@ jobs:
         python -m pip install --upgrade twine
         python -m pip install --upgrade build
 
-    - name: Build and publish
+    - name: Build
+        python -m build
+
+    - name: Publish
       env:
         TWINE_USERNAME: __token__
         TWINE_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
       run: |
-        python -m build
         twine check dist/*
         twine upload dist/*
