@@ -1,10 +1,43 @@
 [build-system]
-requires = [
-    "setuptools >= 45",
-    "wheel",
-    "setuptools_scm[toml] >= 6.2",
-]
+requires = ["setuptools >= 65.4.0", "setuptools_scm[toml]>=7.0.5"]
 build-backend = "setuptools.build_meta"
+
+[project]
+name = "dagmc_geometry_slice_plotter"
+authors = [
+  { name="Jonathan Shimwell", email="mail@jshimwell.com" },
+]
+license = {file = "LICENSE.txt"}
+description = "A minimal Python package for creating plots of slices through DAGMC geometry"
+readme = "README.md"
+requires-python = ">=3.8"
+keywords = ["dagmc", "geometry", "plot", "slice"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+    "matplotlib",
+    "trimesh",
+    "shapely",
+    "scipy",
+    "meshio",
+    "h5py"
+]
+dynamic = ["version"]
+
 
 [tool.setuptools_scm]
 write_to = "dagmc_geometry_slice_plotter/_version.py"
+
+
+[project.optional-dependencies]
+tests = [
+    "pytest",
+    "pytest-cov"
+]
+
+[project.urls]
+"Homepage" = "https://github.com/fusion-energy/dagmc_geometry_slice_plotter"
+"Bug Tracker" = "https://github.com/fusion-energy/dagmc_geometry_slice_plotter/issues"
