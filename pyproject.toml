@@ -29,7 +29,7 @@ dynamic = ["version"]
 
 
 [tool.setuptools_scm]
-write_to = "dagmc_geometry_slice_plotter/_version.py"
+write_to = "src/dagmc_geometry_slice_plotter/_version.py"
 
 
 [project.optional-dependencies]
@@ -41,3 +41,6 @@ tests = [
 [project.urls]
 "Homepage" = "https://github.com/fusion-energy/dagmc_geometry_slice_plotter"
 "Bug Tracker" = "https://github.com/fusion-energy/dagmc_geometry_slice_plotter/issues"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
