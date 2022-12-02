@@ -14,7 +14,9 @@ def create_text_h5m(text):
         files_with_tags=[("text.stl", "mat1")],
         h5m_filename="dagmc_text.h5m",
     )
-os.system('mbconvert dagmc_text.h5m dagmc_text.vtk')
+
+
+os.system("mbconvert dagmc_text.h5m dagmc_text.vtk")
 
 create_text_h5m("DAGMC geometry slice plotter")
 
@@ -24,17 +26,19 @@ plot = plot_slice(
 plot.title("-z")
 plot.show()
 
-plot = plot_axis_slice(dagmc_file_or_trimesh_object="dagmc_text.h5m", view_direction='-z')
+plot = plot_axis_slice(
+    dagmc_file_or_trimesh_object="dagmc_text.h5m", view_direction="-z"
+)
 plot.show()
 
 
-plot = plot_slice(
-    dagmc_file_or_trimesh_object="dagmc_text.h5m", plane_normal=[0, 0, 1]
-)
+plot = plot_slice(dagmc_file_or_trimesh_object="dagmc_text.h5m", plane_normal=[0, 0, 1])
 plot.title("z")
 plot.show()
 
-plot = plot_axis_slice(dagmc_file_or_trimesh_object="dagmc_text.h5m", view_direction='z')
+plot = plot_axis_slice(
+    dagmc_file_or_trimesh_object="dagmc_text.h5m", view_direction="z"
+)
 plot.show()
 
 
@@ -46,7 +50,9 @@ plot = plot_slice(
 plot.title("-y")
 plot.show()
 
-plot = plot_axis_slice(dagmc_file_or_trimesh_object="dagmc_text.h5m", view_direction='-y')
+plot = plot_axis_slice(
+    dagmc_file_or_trimesh_object="dagmc_text.h5m", view_direction="-y"
+)
 plot.show()
 
 
@@ -58,7 +64,9 @@ plot = plot_slice(
 plot.title("y")
 plot.show()
 
-plot = plot_axis_slice(dagmc_file_or_trimesh_object="dagmc_text.h5m", view_direction='y')
+plot = plot_axis_slice(
+    dagmc_file_or_trimesh_object="dagmc_text.h5m", view_direction="y"
+)
 plot.show()
 
 
@@ -70,7 +78,9 @@ plot = plot_slice(
 plot.title("-x")
 plot.show()
 
-plot = plot_axis_slice(dagmc_file_or_trimesh_object="dagmc_text.h5m", view_direction='-x')
+plot = plot_axis_slice(
+    dagmc_file_or_trimesh_object="dagmc_text.h5m", view_direction="-x"
+)
 plot.show()
 
 
@@ -82,5 +92,7 @@ plot = plot_slice(
 plot.title("x")
 plot.show()
 
-plot = plot_axis_slice(dagmc_file_or_trimesh_object="dagmc_text.h5m", view_direction='x')
+plot = plot_axis_slice(
+    dagmc_file_or_trimesh_object="dagmc_text.h5m", view_direction="x"
+)
 plot.show()
