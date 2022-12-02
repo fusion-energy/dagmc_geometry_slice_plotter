@@ -3,7 +3,7 @@
 import cadquery as cq
 from cadquery import exporters
 from stl_to_h5m import stl_to_h5m
-from dagmc_geometry_slice_plotter import plot_slice_of_dagmc_geometry
+from dagmc_geometry_slice_plotter import plot_slice, plot_axis_slice
 
 
 def create_text_h5m(text):
@@ -17,19 +17,26 @@ def create_text_h5m(text):
 
 create_text_h5m("DAGMC geometry slice plotter")
 
-plot = plot_slice_of_dagmc_geometry(
+plot = plot_slice(
     dagmc_file_or_trimesh_object="dagmc_text.h5m", plane_normal=[0, 0, -1]
 )
 plot.title("-z")
 plot.show()
 
-plot = plot_slice_of_dagmc_geometry(
+plot = plot_axis_slice(dagmc_file_or_trimesh_object="dagmc_text.h5m", view_direction='-z')
+plot.show()
+
+plot = plot_slice(
     dagmc_file_or_trimesh_object="dagmc_text.h5m", plane_normal=[0, 0, 1]
 )
 plot.title("z")
 plot.show()
 
-plot = plot_slice_of_dagmc_geometry(
+plot = plot_axis_slice(dagmc_file_or_trimesh_object="dagmc_text.h5m", view_direction='z')
+plot.show()
+
+
+plot = plot_slice(
     dagmc_file_or_trimesh_object="dagmc_text.h5m",
     plane_normal=[0, -1, 0],
     rotate_plot=90,
@@ -37,7 +44,11 @@ plot = plot_slice_of_dagmc_geometry(
 plot.title("-y")
 plot.show()
 
-plot = plot_slice_of_dagmc_geometry(
+plot = plot_axis_slice(dagmc_file_or_trimesh_object="dagmc_text.h5m", view_direction='-y')
+plot.show()
+
+
+plot = plot_slice(
     dagmc_file_or_trimesh_object="dagmc_text.h5m",
     plane_normal=[0, 1, 0],
     rotate_plot=90,
@@ -45,8 +56,11 @@ plot = plot_slice_of_dagmc_geometry(
 plot.title("y")
 plot.show()
 
+plot = plot_axis_slice(dagmc_file_or_trimesh_object="dagmc_text.h5m", view_direction='y')
+plot.show()
 
-plot = plot_slice_of_dagmc_geometry(
+
+plot = plot_slice(
     dagmc_file_or_trimesh_object="dagmc_text.h5m",
     plane_normal=[-1, 0, 0],
     rotate_plot=-90,
@@ -54,10 +68,17 @@ plot = plot_slice_of_dagmc_geometry(
 plot.title("-x")
 plot.show()
 
-plot = plot_slice_of_dagmc_geometry(
+plot = plot_axis_slice(dagmc_file_or_trimesh_object="dagmc_text.h5m", view_direction='-x')
+plot.show()
+
+
+plot = plot_slice(
     dagmc_file_or_trimesh_object="dagmc_text.h5m",
     plane_normal=[1, 0, 0],
     rotate_plot=90,
 )
 plot.title("x")
+plot.show()
+
+plot = plot_axis_slice(dagmc_file_or_trimesh_object="dagmc_text.h5m", view_direction='x')
 plot.show()

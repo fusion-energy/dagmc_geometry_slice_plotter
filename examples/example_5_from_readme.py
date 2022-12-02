@@ -1,10 +1,10 @@
-from dagmc_geometry_slice_plotter import plot_slice_of_dagmc_geometry
+from dagmc_geometry_slice_plotter import plot_slice
 
 
 def make_slice_plot(x_height):
     """A minimal function that takes the slice height"""
 
-    plot = plot_slice_of_dagmc_geometry(
+    plot = plot_slice(
         dagmc_file_or_trimesh_object="dagmc.h5m",
         plane_normal=[0, 0, 1],
         plane_origin=[0, 0, x_height],
