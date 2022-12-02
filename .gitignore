@@ -136,3 +136,7 @@ tests/neutronics_workflow-0.0.2/
 
 # python package version number file
 _version.py
+
+# geometry files made during tests
+*.stl
+*.vtk
