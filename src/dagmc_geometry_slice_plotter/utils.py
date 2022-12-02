@@ -184,13 +184,8 @@ def plot_slice_of_trimesh_object(
             "intersected, try changing the plane_origin or plane_normal"
         )
         raise ValueError(msg)
-    
-    if isinstance(plane_normal, str):
-        if plane_normal_vector == '-z'
-    else:
-        plane_normal_vector = plane_normal
 
-    to_2D = trimesh.geometry.align_vectors(plane_normal_vector, [0, 0, -1])
+    to_2D = trimesh.geometry.align_vectors(plane_normal, [0, 0, -1])
 
     slice_2D, to_3D = slice.to_planar(to_2D=to_2D)
 
