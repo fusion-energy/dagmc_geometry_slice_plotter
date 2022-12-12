@@ -37,21 +37,33 @@ def plot_axis_slice(
     if view_direction == "-z":
         plane_normal = [0, 0, -1]
         rotate_plot = 0
+        x_label='X [cm]'
+        y_label='Y [cm]'
     if view_direction == "z":
         plane_normal = [0, 0, 1]
         rotate_plot = 0
+        x_label='X [cm]'
+        y_label='Y [cm]'
     if view_direction == "-y":
         plane_normal = [0, -1, 0]
         rotate_plot = 90
+        x_label='X [cm]'
+        y_label='Z [cm]'
     if view_direction == "y":
         plane_normal = [0, 1, 0]
         rotate_plot = 90
+        x_label='X [cm]'
+        y_label='Z [cm]'
     if view_direction == "-x":
         plane_normal = [-1, 0, 0]
         rotate_plot = -90
+        x_label='Y [cm]'
+        y_label='Z [cm]'
     if view_direction == "x":
         plane_normal = [1, 0, 0]
         rotate_plot = 90
+        x_label='Y [cm]'
+        y_label='Z [cm]'
 
     slice = plot_slice(
         dagmc_file_or_trimesh_object=dagmc_file_or_trimesh_object,
@@ -59,6 +71,9 @@ def plot_axis_slice(
         plane_normal=plane_normal,
         rotate_plot=rotate_plot,
     )
+
+    slice.xlabel(x_label)
+    slice.ylabel(y_label)
 
     return slice
 
