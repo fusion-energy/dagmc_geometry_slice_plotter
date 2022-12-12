@@ -1,7 +1,5 @@
 import os
-import tarfile
 import unittest
-import urllib.request
 from pathlib import Path
 import trimesh
 
@@ -24,7 +22,7 @@ class TestPlotSliceOfTrimeshObject(unittest.TestCase):
         """Tests returned object is a matplotlib plot"""
 
         plot = plot_axis_slice(
-            view_direction='x',
+            view_direction="x",
             dagmc_file_or_trimesh_object=self.trimesh_mesh_object_smaller,
         )
 
@@ -36,7 +34,7 @@ class TestPlotSliceOfTrimeshObject(unittest.TestCase):
         os.system("rm test_plot.png")
 
         plot = plot_axis_slice(
-            view_direction='y',
+            view_direction="y",
             dagmc_file_or_trimesh_object=self.trimesh_mesh_object_smaller,
         )
         plot.savefig("test_plot.png")
