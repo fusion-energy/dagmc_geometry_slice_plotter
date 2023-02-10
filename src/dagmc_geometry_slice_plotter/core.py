@@ -100,7 +100,7 @@ def plot_slice(
 
     return slice
 
-
+# TODO remove this function
 def plot_slice_of_dagmc_file(
     dagmc_filename: str,
     plane_origin: Tuple[float, float, float] = None,
@@ -165,6 +165,35 @@ def plot_slice_of_trimesh_object(
         A matplotlib.pyplot object
     """
 
+    plt.close()
+
+    # keep plot axis scaled the same
+    plt.axes().set_aspect("equal")  # an option to increase box size "datalim"
+
+    data = get_slice_of_outline(trimesh_mesh_object, plane_normal, plane_origin)
+
+    if rotate_plot != 0:
+        base = plt.gca().transData
+        rot = transforms.Affine2D().rotate_deg(rotate_plot)
+
+        for i in data:
+            plt.plot(*i, color="black",  linewidth=1, transform=rot + base)
+
+    else:
+        for i in data:
+            plt.plot(*i, color="black", linewidth=1)
+
+    return plt
+
+
+def get_slice_of_outline(
+    trimesh_mesh_object,
+    plane_normal,
+    plane_origin,
+):
+    """returns the outline x,y coordinates for each line in the slice. Can be
+    plotted by iterating through the lines and expanding them with *"""
+
     if plane_origin is None:
         plane_origin = trimesh_mesh_object.centroid
     slice = trimesh_mesh_object.section(
@@ -183,23 +212,11 @@ def plot_slice_of_trimesh_object(
 
     slice_2D, to_3D = slice.to_planar(to_2D=to_2D)
 
-    plt.close()
-
-    # keep plot axis scaled the same
-    plt.axes().set_aspect("equal")  # an option to increase box size "datalim"
-
-    if rotate_plot != 0:
-        base = plt.gca().transData
-        rot = transforms.Affine2D().rotate_deg(rotate_plot)
-
+    lines = []
     for entity in slice_2D.entities:
 
         discrete = entity.discrete(slice_2D.vertices)
 
-        if rotate_plot != 0:
-            plt.plot(*discrete.T, color="black", linewidth=1, transform=rot + base)
-        else:
-            plt.plot(*discrete.T, color="black", linewidth=1)
+        lines.append(discrete.T)
 
-    return plt
-
+    return lines
