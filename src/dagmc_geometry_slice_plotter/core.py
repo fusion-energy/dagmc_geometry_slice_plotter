@@ -171,7 +171,11 @@ def plot_slice_of_trimesh_object(
     # keep plot axis scaled the same
     plt.axes().set_aspect("equal")  # an option to increase box size "datalim"
 
-    data = get_slice_coordinates(trimesh_mesh_object, plane_normal, plane_origin)
+    data = get_slice_coordinates(
+        trimesh_mesh_object,
+        plane_origin,
+        plane_normal,
+    )
 
     if rotate_plot != 0:
         base = plt.gca().transData
