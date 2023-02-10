@@ -49,7 +49,6 @@ def plot_axis_slice(
         rotate_plot=rotate_plot,
     )
 
-
     return slice
 
 
@@ -151,7 +150,7 @@ def plot_slice_of_trimesh_object(
     x_label, y_label = plane_normal_to_x_y_label(plane_normal)
     plt.xlabel(x_label)
     plt.ylabel(y_label)
-    
+
     return plt
 
 
