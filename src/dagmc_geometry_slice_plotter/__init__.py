@@ -1,4 +1,3 @@
-
 try:
     # this works for python 3.7 and lower
     from importlib.metadata import version, PackageNotFoundError
@@ -18,3 +17,4 @@ from .core import plot_slice_of_dagmc_file
 from .core import plot_slice_of_trimesh_object
 from .core import plot_slice
 from .core import plot_axis_slice
+from .core import get_slice_coordinates

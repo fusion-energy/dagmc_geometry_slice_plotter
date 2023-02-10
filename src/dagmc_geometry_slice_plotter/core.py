@@ -41,7 +41,7 @@ def plot_axis_slice(
     plane_normal = view_direction_to_plane_normal(view_direction)
     rotate_plot = view_direction_to_rotate_plot(view_direction)
     x_label, y_label = view_direction_to_x_y_label(view_direction)
-   
+
     slice = plot_slice(
         dagmc_file_or_trimesh_object=dagmc_file_or_trimesh_object,
         plane_origin=plane_origin,
@@ -99,6 +99,7 @@ def plot_slice(
         )
 
     return slice
+
 
 # TODO remove this function
 def plot_slice_of_dagmc_file(
@@ -178,7 +179,7 @@ def plot_slice_of_trimesh_object(
         rot = transforms.Affine2D().rotate_deg(rotate_plot)
 
         for i in data:
-            plt.plot(*i, color="black",  linewidth=1, transform=rot + base)
+            plt.plot(*i, color="black", linewidth=1, transform=rot + base)
 
     else:
         for i in data:
@@ -193,7 +194,7 @@ def get_slice_coordinates(
     plane_normal: Tuple[float, float, float] = [0, 0, 1],
 ):
     """returns the outline x,y coordinates for each line in the slice. Can be
-    plotted by iterating through the lines and expanding them with *"""
+    plotted by iterating through the lines and expanding them with *
 
     Args:
         trimesh_mesh_object: A trimesh mesh object. This can be created from a
@@ -215,7 +216,9 @@ def get_slice_coordinates(
         if not Path(dagmc_file_or_trimesh_object).is_file():
             raise FileNotFoundError(f"file {dagmc_file_or_trimesh_object} not found.")
 
-        trimesh_mesh_object = trimesh.load_mesh(dagmc_file_or_trimesh_object, process=False)
+        trimesh_mesh_object = trimesh.load_mesh(
+            dagmc_file_or_trimesh_object, process=False
+        )
     else:
         trimesh_mesh_object = dagmc_file_or_trimesh_object
 
