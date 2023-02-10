@@ -41,7 +41,7 @@ def plot_axis_slice(
     plane_normal = view_direction_to_plane_normal(view_direction)
     rotate_plot = view_direction_to_rotate_plot(view_direction)
     x_label, y_label = view_direction_to_x_y_label(view_direction)
-   
+
     slice = plot_slice(
         dagmc_file_or_trimesh_object=dagmc_file_or_trimesh_object,
         plane_origin=plane_origin,
@@ -90,7 +90,6 @@ def plot_slice(
         )
 
     else:
-
         slice = plot_slice_of_trimesh_object(
             trimesh_mesh_object=dagmc_file_or_trimesh_object,
             plane_origin=plane_origin,
@@ -193,7 +192,6 @@ def plot_slice_of_trimesh_object(
         rot = transforms.Affine2D().rotate_deg(rotate_plot)
 
     for entity in slice_2D.entities:
-
         discrete = entity.discrete(slice_2D.vertices)
 
         if rotate_plot != 0:
@@ -202,4 +200,3 @@ def plot_slice_of_trimesh_object(
             plt.plot(*discrete.T, color="black", linewidth=1)
 
     return plt
-
