@@ -170,7 +170,7 @@ def plot_slice_of_trimesh_object(
     # keep plot axis scaled the same
     plt.axes().set_aspect("equal")  # an option to increase box size "datalim"
 
-    data = get_slice_of_outline(trimesh_mesh_object, plane_normal, plane_origin)
+    data = get_slice_coordinates(trimesh_mesh_object, plane_normal, plane_origin)
 
     if rotate_plot != 0:
         base = plt.gca().transData
@@ -186,13 +186,21 @@ def plot_slice_of_trimesh_object(
     return plt
 
 
-def get_slice_of_outline(
-    trimesh_mesh_object,
+def get_slice_coordinates(
+    dagmc_file_or_trimesh_object: Union[str, trimesh.Trimesh, trimesh.Scene],
     plane_normal,
     plane_origin,
 ):
     """returns the outline x,y coordinates for each line in the slice. Can be
     plotted by iterating through the lines and expanding them with *"""
+
+    if isinstance(dagmc_file_or_trimesh_object, str):
+        if not Path(dagmc_file_or_trimesh_object).is_file():
+            raise FileNotFoundError(f"file {dagmc_file_or_trimesh_object} not found.")
+
+        trimesh_mesh_object = trimesh.load_mesh(dagmc_file_or_trimesh_object, process=False)
+    else:
+        trimesh_mesh_object = dagmc_file_or_trimesh_object
 
     if plane_origin is None:
         plane_origin = trimesh_mesh_object.centroid
