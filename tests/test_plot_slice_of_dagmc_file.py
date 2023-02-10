@@ -12,7 +12,6 @@ class TestPlotSliceOfDagmcFile(unittest.TestCase):
     """Tests the neutronics utilities functionality and use cases"""
 
     def setUp(self):
-
         self.h5m_filename_smaller = "tests/dagmc.h5m"
 
     def test_create_default_plot(self):
