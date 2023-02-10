@@ -13,8 +13,7 @@ except PackageNotFoundError:
 
 __all__ = ["__version__"]
 
-from .core import plot_slice_of_dagmc_file
+from .core import get_slice_coordinates
 from .core import plot_slice_of_trimesh_object
 from .core import plot_slice
 from .core import plot_axis_slice
-from .core import get_slice_coordinates

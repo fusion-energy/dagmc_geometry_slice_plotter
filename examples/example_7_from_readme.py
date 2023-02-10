@@ -16,4 +16,3 @@ for xy in data:
     plt.plot(*xy, color="black", linewidth=1)
 
 plt.savefig("example_7_slice.png")
-plt.show()
