@@ -90,7 +90,6 @@ def plot_slice(
         )
 
     else:
-
         slice = plot_slice_of_trimesh_object(
             trimesh_mesh_object=dagmc_file_or_trimesh_object,
             plane_origin=plane_origin,
@@ -242,7 +241,6 @@ def get_slice_coordinates(
 
     lines = []
     for entity in slice_2D.entities:
-
         discrete = entity.discrete(slice_2D.vertices)
 
         lines.append(discrete.T)

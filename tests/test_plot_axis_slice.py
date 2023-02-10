@@ -11,7 +11,6 @@ class TestPlotSliceOfTrimeshObject(unittest.TestCase):
     """Tests the neutronics utilities functionality and use cases"""
 
     def setUp(self):
-
         h5m_filename_smaller = "tests/dagmc.h5m"
 
         self.trimesh_mesh_object_smaller = trimesh.load_mesh(
