@@ -91,12 +91,44 @@ plot.savefig('example_4_slice.png')
 
 DAGMC files can also be made using packages like [cad_to_dagmc](https://github.com/fusion-energy/cad_to_dagmc) or [stl_to_h5m](https://github.com/fusion-energy/stl_to_h5m). This example uses CadQuery to make an STL file then converts the STL file to a DAGMC h5m file and plots a slice through the geometry  
 
+# Custom plots
+
+You can also use the package to access the the coordinates and lines that make
+up the outline and then plot these lines with your own MatplotLib script or
+other plotting package.
+
+This example makes use of low level functionality in the package to extract the
+coordinates and lines then plot them in MatPlotLib. This offers users full
+customization of how the plots appear and also allows the plots to be combined
+with other types of plots such as 
+
+```python
+from dagmc_geometry_slice_plotter import get_slice_coordinates
+import matplotlib.pyplot as plt
+
+data = get_slice_coordinates(
+    dagmc_file_or_trimesh_object="dagmc.h5m",
+    plane_origin=[0, 0, 200],
+    plane_normal=[0, 0, 1],
+)
+
+plt.axes().set_aspect("equal")  # scales the x y axis 1:1
+
+for xy in data:
+    plt.plot(*xy, color="black", linewidth=1)
+
+plt.savefig("example_7_slice.png")
+```
 
 # Related packages
 
-This package is used by the [openmc_plot](https://github.com/fusion-energy/openmc_plot) Python package which has a web deployed version at [xsplot.com](http://www.xsplot.com)
+- This package is used by the [openmc_plot](https://github.com/fusion-energy/openmc_plot) Python package which has a web deployed version at [xsplot.com](http://www.xsplot.com)
 
-This package is used by the [regular_mesh_plotter](https://github.com/fusion-energy/regular_mesh_plotter) Python package to combine slice plots with regular mesh tally results and produce images like below.
+
+- This package can also be used together with the [openmc_geometry_plot](https://github.com/fusion-energy/openmc_geometry_plot) Python package to combine outline slice plots of DAGMC geometry with colored areas for materials or cells
+
+- This package can also be used together with the [regular_mesh_plotter](https://github.com/fusion-energy/regular_mesh_plotter) Python package to combine outline
+slice plots with regular mesh tally results and produce images like below.
 
 ![paramak plot openmc regular mesh tally](https://user-images.githubusercontent.com/8583900/138322007-daf1eb6f-ca42-4d9c-9581-8dbc9da94fe5.png)
 
