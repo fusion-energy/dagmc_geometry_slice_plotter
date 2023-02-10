@@ -150,9 +150,10 @@ def plot_slice_of_trimesh_object(
     file each time a new plot is required.
 
     Args:
-        trimesh_mesh_object: A trimesh mesh object. This can be created from a
-            DAGMC h5m file in the following way 'trimesh_mesh_object =
-            trimesh.load_mesh(dagmc_filename, process=False)'
+        dagmc_file_or_trimesh_object: the filename of the DAGMC h5m file or a
+            A trimesh mesh object. This can be created from a DAGMC h5m file in
+            the following way 'trimesh_mesh_object = trimesh.load_mesh(
+            dagmc_filename, process=False)'.
         plane_origin: the origin of the plain, if None then the centroid of
             the mesh will be used.
         plane_normal: the plane to slice the geometry on. Defaults to slicing
@@ -188,11 +189,27 @@ def plot_slice_of_trimesh_object(
 
 def get_slice_coordinates(
     dagmc_file_or_trimesh_object: Union[str, trimesh.Trimesh, trimesh.Scene],
-    plane_normal,
-    plane_origin,
+    plane_origin: Tuple[float, float, float] = None,
+    plane_normal: Tuple[float, float, float] = [0, 0, 1],
 ):
     """returns the outline x,y coordinates for each line in the slice. Can be
     plotted by iterating through the lines and expanding them with *"""
+
+    Args:
+        trimesh_mesh_object: A trimesh mesh object. This can be created from a
+            DAGMC h5m file in the following way 'trimesh_mesh_object =
+            trimesh.load_mesh(dagmc_filename, process=False)'
+        plane_origin: the origin of the plain, if None then the centroid of
+            the mesh will be used.
+        plane_normal: the plane to slice the geometry on. Defaults to slicing
+            along the Z plane which is input as [0, 0, 1].
+        rotate_plot: the angle in degrees to rotate the plot by. Useful when
+            used in conjunction with changing plane_normal to orientate the
+            plot correctly.
+
+    Return:
+        A matplotlib.pyplot object
+    """
 
     if isinstance(dagmc_file_or_trimesh_object, str):
         if not Path(dagmc_file_or_trimesh_object).is_file():
