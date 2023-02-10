@@ -21,7 +21,7 @@ class TestPlotSliceOfDagmcFile(unittest.TestCase):
 
         for xy in list_of_coords:
             plt.plot(*xy, color="black", linewidth=1)
-        
+
         assert isinstance(list_of_coords, list)
 
     def test_create_default_plot_file(self):
@@ -32,10 +32,9 @@ class TestPlotSliceOfDagmcFile(unittest.TestCase):
         list_of_coords = get_slice_coordinates(
             dagmc_file_or_trimesh_object=self.h5m_filename_smaller,
         )
-        
+
         for xy in list_of_coords:
             plt.plot(*xy, color="black", linewidth=1)
 
-        
         assert isinstance(list_of_coords, list)
         # TODO consider making the function return lists of floats not a TrackedArray
