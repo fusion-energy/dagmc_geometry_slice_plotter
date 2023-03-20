@@ -1,4 +1,4 @@
-import openmc
+
 import streamlit as st
 from dagmc_geometry_slice_plotter import plot_axis_slice
 
@@ -72,6 +72,15 @@ def main():
 
     else:
         save_uploadedfile(dagmc_h5m_file)
+
+        try:
+            # only used to find bounding box, could replace with
+            # https://github.com/fusion-energy/dagmc_bounding_box
+            import openmc
+        except:
+            msg = 'import openmc failed, please make sure openmc is installed'
+            st.write(msg)
+            raise ValueError(msg)
 
         dagunv = openmc.DAGMCUniverse(dagmc_h5m_file.name).bounded_universe()
         bb = dagunv.bounding_box
