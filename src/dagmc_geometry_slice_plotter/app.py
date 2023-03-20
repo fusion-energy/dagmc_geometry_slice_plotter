@@ -1,4 +1,3 @@
-
 import streamlit as st
 from dagmc_geometry_slice_plotter import plot_axis_slice
 
@@ -78,7 +77,7 @@ def main():
             # https://github.com/fusion-energy/dagmc_bounding_box
             import openmc
         except:
-            msg = 'import openmc failed, please make sure openmc is installed'
+            msg = "import openmc failed, please make sure openmc is installed"
             st.write(msg)
             raise ValueError(msg)
 
