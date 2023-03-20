@@ -50,7 +50,6 @@ def header():
 
 
 def main():
-
     st.write(
         """
             👉 Create your ```dagmc.h5m``` file using one of the methods listed in on the [DAGMC tools discussion](https://github.com/svalinn/DAGMC/discussions/812):
@@ -72,7 +71,6 @@ def main():
         )
 
     else:
-
         save_uploadedfile(dagmc_h5m_file)
 
         dagunv = openmc.DAGMCUniverse(dagmc_h5m_file.name).bounded_universe()
