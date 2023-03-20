@@ -17,3 +17,4 @@ from .core import get_slice_coordinates
 from .core import plot_slice_of_trimesh_object
 from .core import plot_slice
 from .core import plot_axis_slice
+from .app import *

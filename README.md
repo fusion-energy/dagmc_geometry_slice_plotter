@@ -14,6 +14,15 @@ A minimal Python package that produces slice plots through h5m DAGMC geometry fi
 pip install dagmc_geometry_slice_plotter
 ```
 
+# Graphical User Interface Usage
+
+Once installed you will be able to launch a browser based GUI from the terminal
+with the command ...
+
+```bash
+dagmc_geometry_slice_plotter
+```
+
 # Python API Usage
 
 These examples assume you have a h5m file called ```dagmc.h5m``` in the same
