@@ -23,7 +23,8 @@ dependencies = [
     "shapely",
     "scipy",
     "meshio",
-    "h5py"
+    "h5py",
+    "streamlit"
 ]
 dynamic = ["version"]
 
@@ -37,6 +38,9 @@ tests = [
     "pytest",
     "pytest-cov"
 ]
+
+[project.scripts]
+dagmc_geometry_slice_plotter = "dagmc_geometry_slice_plotter.launch:main"
 
 [project.urls]
 "Homepage" = "https://github.com/fusion-energy/dagmc_geometry_slice_plotter"
